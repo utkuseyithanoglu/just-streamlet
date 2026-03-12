@@ -123,7 +123,7 @@ if page == "Chatbot":
         hourly_df = pd.read_csv(os.path.join(base_dir, "hourly_location_avg.csv"))
         monthly_df = pd.read_csv(os.path.join(base_dir, "monthly_location_avg.csv"))
         rf_preds = pd.read_csv(os.path.join(base_dir, "hourly_rf_predictions.csv"))
-        df2 = pd.read_csv(os.path.join(base_dir, "hourly_preds.csv"))
+        df2 = pd.read_csv(os.path.join(base_dir, "ALL_BOROUGHS_SARIMA_72H.csv"))
 
         return hourly_df, monthly_df, rf_preds, df2
 
