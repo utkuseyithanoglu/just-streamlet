@@ -116,17 +116,16 @@ if page == "Chatbot":
         model_path = os.path.join(base_dir,"models", "season_models.pkl")
         with open(model_path, "rb") as f:
             return pickle.load(f)
+    @st.cache_data
+    def load_all_data():
+        base_dir = os.path.dirname(os.path.abspath(__file__))
 
-   @st.cache_data
-def load_all_data():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+        hourly_df = pd.read_csv(os.path.join(base_dir, "hourly_location_avg.csv"))
+        monthly_df = pd.read_csv(os.path.join(base_dir, "monthly_location_avg.csv"))
+        rf_preds = pd.read_csv(os.path.join(base_dir, "hourly_rf_predictions.csv"))
+        df2 = pd.read_csv(os.path.join(base_dir, "hourly_preds.csv"))
 
-    hourly_df = pd.read_csv(os.path.join(base_dir, "hourly_location_avg.csv"))
-    monthly_df = pd.read_csv(os.path.join(base_dir, "monthly_location_avg.csv"))
-    rf_preds = pd.read_csv(os.path.join(base_dir, "hourly_rf_predictions.csv"))
-    df2 = pd.read_csv(os.path.join(base_dir, "ALL_BOROUGHS_SARIMA_72H.csv"))
-
-    return hourly_df, monthly_df, rf_preds, df2
+        return hourly_df, monthly_df, rf_preds, df2
 
     models = load_models()
     hourly_df, monthly_df, rf_preds, df2 = load_all_data()
